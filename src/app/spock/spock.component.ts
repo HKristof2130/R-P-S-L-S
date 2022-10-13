@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-spock',
@@ -7,17 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpockComponent implements OnInit {
 
-  private static readonly DEFEATABLE = [2, 4];
-  private static readonly UNDEFEATABBLE = [1, 5];
-  private static readonly SPOCK_CARD_ID = 3;
-  defeatables: number[] = [];
-  unDefeatables: number[] = [];
-  cardId: number = 0;
+  private static readonly DEFEATABLES = [1, 3];
+  private static readonly UNDEFEATABBLES = [2, 4];
+  private static readonly SPOCK_CARD_ID = 5;
+  defeatables: number[] = SpockComponent.DEFEATABLES;
+  unDefeatables: number[] = SpockComponent.UNDEFEATABBLES;
+  cardId: number = SpockComponent.SPOCK_CARD_ID;
+
+  @Output() chooseSpock: EventEmitter<SpockComponent> = new EventEmitter<SpockComponent>;
 
   ngOnInit(): void {
-    this.defeatables = SpockComponent.DEFEATABLE;
-    this.unDefeatables = SpockComponent.UNDEFEATABBLE;
-    this.cardId = SpockComponent.SPOCK_CARD_ID;
   }
 
+  choose(){
+    console.log(this.defeatables,this.unDefeatables,this.cardId);
+    this.chooseSpock.emit(this);
+  }
 }

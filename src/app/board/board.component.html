@@ -1,17 +1,27 @@
+<app-guide></app-guide>
 <section>
     <div>
-        <app-rock></app-rock>
+        <app-rock (chooseRock)="rockEventCatcher($event)"></app-rock>
     </div>
     <div>
-        <app-paper></app-paper>
+        <app-paper (choosePaper)="paperEventCatcher($event)"></app-paper>
     </div>
     <div>
-        <app-scissors></app-scissors>
+        <app-scissors (chooseScissors)="scissorsEventCatcher($event)"></app-scissors>
     </div>
     <div>
-        <app-lizard></app-lizard>
+        <app-lizard (chooseLizard)="lizardEventCatcher($event)"></app-lizard>
     </div>
     <div>
-        <app-spock></app-spock>
-    </div>        
+        <app-spock (chooseSpock)="spockEventCatcher($event)"></app-spock>
+    </div>
 </section>
+
+<br><br>
+
+<div id="resultDiv" [ngSwitch]="result">
+    <img src="assets/images/win.jpg" alt="You won" *ngSwitchCase="1">
+    <img src="assets/images/draw.jpg" alt="Draw" *ngSwitchCase="0">
+    <img src="assets/images/lost.jpg" alt="You lost" *ngSwitchCase="-1">
+    <span *ngSwitchDefault></span>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Card } from '../card-interface/card-interface';
 
 @Component({
@@ -8,17 +8,21 @@ import { Card } from '../card-interface/card-interface';
 })
 export class PaperComponent implements OnInit, Card {
 
-  private static readonly DEFEATABLE = [1, 5];
-  private static readonly UNDEFEATABBLE = [3, 4];
+  private static readonly DEFEATABLES = [1, 5];
+  private static readonly UNDEFEATABBLES = [3, 4];
   private static readonly PAPER_CARD_ID = 2;
-  defeatables: number[] = [];
-  unDefeatables: number[] = [];
-  cardId: number = 0;
+
+  defeatables: number[] = PaperComponent.DEFEATABLES;
+  unDefeatables: number[] = PaperComponent.UNDEFEATABBLES;
+  cardId: number = PaperComponent.PAPER_CARD_ID;
+
+  @Output() choosePaper: EventEmitter<PaperComponent> = new EventEmitter<PaperComponent>;
 
   ngOnInit(): void {
-    this.defeatables = PaperComponent.DEFEATABLE;
-    this.unDefeatables = PaperComponent.UNDEFEATABBLE;
-    this.cardId = PaperComponent.PAPER_CARD_ID;
   }
 
+  choose(){
+    console.log(this.defeatables,this.unDefeatables,this.cardId);
+    this.choosePaper.emit(this);
+  }
 }

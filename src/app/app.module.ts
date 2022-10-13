@@ -9,6 +9,7 @@ import { PaperComponent } from './paper/paper.component';
 import { ScissorsComponent } from './scissors/scissors.component';
 import { LizardComponent } from './lizard/lizard.component';
 import { SpockComponent } from './spock/spock.component';
+import { GuideComponent } from './guide/guide.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SpockComponent } from './spock/spock.component';
     PaperComponent,
     ScissorsComponent,
     LizardComponent,
-    SpockComponent
+    SpockComponent,
+    GuideComponent
   ],
   imports: [
     BrowserModule,

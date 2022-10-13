@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-scissors',
@@ -7,17 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScissorsComponent implements OnInit {
 
-  private static readonly DEFEATABLE = [2, 4];
-  private static readonly UNDEFEATABBLE = [1, 5];
+  private static readonly DEFEATABLES = [2, 4];
+  private static readonly UNDEFEATABBLES = [1, 5];
   private static readonly SCISSORS_CARD_ID = 3;
-  defeatables: number[] = [];
-  unDefeatables: number[] = [];
-  cardId: number = 0;
+  defeatables: number[] = ScissorsComponent.DEFEATABLES;
+  unDefeatables: number[] = ScissorsComponent.UNDEFEATABBLES;
+  cardId: number = ScissorsComponent.SCISSORS_CARD_ID;
+
+  @Output() chooseScissors: EventEmitter<ScissorsComponent> = new EventEmitter<ScissorsComponent>;
+
 
   ngOnInit(): void {
-    this.defeatables = ScissorsComponent.DEFEATABLE;
-    this.unDefeatables = ScissorsComponent.UNDEFEATABBLE;
-    this.cardId = ScissorsComponent.SCISSORS_CARD_ID;
+  }
+
+  choose(){
+    console.log(this.defeatables,this.unDefeatables,this.cardId);
+    this.chooseScissors.emit(this);
   }
 
 }

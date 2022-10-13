@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-lizard',
@@ -7,17 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LizardComponent implements OnInit {
 
-  private static readonly DEFEATABLE = [2, 5];
-  private static readonly UNDEFEATABBLE = [1, 3];
+  private static readonly DEFEATABLES = [2, 5];
+  private static readonly UNDEFEATABBLES = [1, 3];
   private static readonly LIZARD_CARD_ID = 4;
-  defeatables: number[] = [];
-  unDefeatables: number[] = [];
-  cardId: number = 0;
+  defeatables: number[] = LizardComponent.DEFEATABLES;
+  unDefeatables: number[] = LizardComponent.UNDEFEATABBLES;
+  cardId: number = LizardComponent.LIZARD_CARD_ID;
+
+  @Output() chooseLizard: EventEmitter<LizardComponent> = new EventEmitter<LizardComponent>;
 
   ngOnInit(): void {
-    this.defeatables = LizardComponent.DEFEATABLE;
-    this.unDefeatables = LizardComponent.UNDEFEATABBLE;
-    this.cardId = LizardComponent.LIZARD_CARD_ID;
+  }
+
+  choose(){
+    console.log(this.defeatables,this.unDefeatables,this.cardId);
+    this.chooseLizard.emit(this);
   }
 
 }

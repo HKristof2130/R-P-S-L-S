@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { LoadChildrenCallback } from '@angular/router';
 import { Card } from '../card-interface/card-interface';
 
 @Component({
@@ -8,17 +9,22 @@ import { Card } from '../card-interface/card-interface';
 })
 export class RockComponent implements OnInit, Card {
   
-  private static readonly DEFEATABLE = [3, 4];
-  private static readonly UNDEFEATABBLE = [2, 5];
+  private static readonly DEFEATABLES = [3, 4];
+  private static readonly UNDEFEATABBLES = [2, 5];
   private static readonly ROCK_CARD_ID = 1;
-  defeatables: number[] = [];
-  unDefeatables: number[] = [];
-  cardId: number = 0;
+  defeatables: number[] = RockComponent.DEFEATABLES;
+  unDefeatables: number[] = RockComponent.UNDEFEATABBLES;
+  cardId: number = RockComponent.ROCK_CARD_ID;
+
+  @Output() chooseRock: EventEmitter<RockComponent> = new EventEmitter<RockComponent>;
 
   ngOnInit(): void {
-    this.defeatables = RockComponent.DEFEATABLE;
-    this.unDefeatables = RockComponent.UNDEFEATABBLE;
-    this.cardId = RockComponent.ROCK_CARD_ID;
   }
+
+  choose(){
+    console.log(this.defeatables,this.unDefeatables,this.cardId);
+    this.chooseRock.emit(this);
+  }
+
 }
 
