@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuideComponent implements OnInit {
 
-  constructor() { }
+  buttonTitle : string = "Show guide";
+  showGuide : boolean = false;
 
   ngOnInit(): void {
+  }
+
+  toogleGuide(){
+
+    this.showGuide = !this.showGuide;
+    this.showGuide ? this.buttonTitle="Watching guide" : this.buttonTitle="Show guide";
   }
 
 }
