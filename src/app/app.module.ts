@@ -10,6 +10,7 @@ import { ScissorsComponent } from './scissors/scissors.component';
 import { LizardComponent } from './lizard/lizard.component';
 import { SpockComponent } from './spock/spock.component';
 import { GuideComponent } from './guide/guide.component';
+import { EnemyComponent } from './enemy/enemy.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GuideComponent } from './guide/guide.component';
     ScissorsComponent,
     LizardComponent,
     SpockComponent,
-    GuideComponent
+    GuideComponent,
+    EnemyComponent
   ],
   imports: [
     BrowserModule,
